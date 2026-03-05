@@ -52,25 +52,30 @@ class _CountryGridItemState extends State<CountryGridItem> {
               flex: 3,
               child: Stack(
                 children: [
-                  ClipRRect(
-                    borderRadius: const BorderRadius.vertical(
-                      top: Radius.circular(12),
-                    ),
-                    child: CachedNetworkImage(
-                      imageUrl: widget.country.flag,
-                      width: double.infinity,
-                      fit: BoxFit.cover,
-                      placeholder: (context, url) => Container(
-                        color: isDark
-                            ? AppColors.darkSecondaryText
-                            : AppColors.lightSecondaryText,
-                        child: const Center(child: CircularProgressIndicator()),
+                  Hero(
+                    tag: 'flag-${widget.country.cca2}',
+                    child: ClipRRect(
+                      borderRadius: const BorderRadius.vertical(
+                        top: Radius.circular(12),
                       ),
-                      errorWidget: (context, error, stackTrace) => Container(
-                        color: isDark
-                            ? AppColors.darkSecondaryText
-                            : AppColors.lightSecondaryText,
-                        child: const Icon(Icons.flag, size: 40),
+                      child: CachedNetworkImage(
+                        imageUrl: widget.country.flag,
+                        width: double.infinity,
+                        fit: BoxFit.cover,
+                        placeholder: (context, url) => Container(
+                          color: isDark
+                              ? AppColors.darkSecondaryText
+                              : AppColors.lightSecondaryText,
+                          child: const Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                        ),
+                        errorWidget: (context, error, stackTrace) => Container(
+                          color: isDark
+                              ? AppColors.darkSecondaryText
+                              : AppColors.lightSecondaryText,
+                          child: const Icon(Icons.flag, size: 40),
+                        ),
                       ),
                     ),
                   ),

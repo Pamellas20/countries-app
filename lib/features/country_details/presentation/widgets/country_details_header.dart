@@ -7,11 +7,13 @@ class CountryDetailsHeader extends StatelessWidget {
     super.key,
     required this.countryName,
     required this.flagUrl,
+    required this.cca2,
     this.expandedHeight = 300,
   });
 
   final String countryName;
   final String flagUrl;
+  final String cca2;
   final double expandedHeight;
 
   @override
@@ -38,13 +40,16 @@ class CountryDetailsHeader extends StatelessWidget {
         style: isDark ? AppTextStyles.darkHeader : AppTextStyles.lightHeader,
       ),
       flexibleSpace: FlexibleSpaceBar(
-        background: Container(
-          margin: const EdgeInsets.only(top: 100, bottom: 16),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            image: DecorationImage(
-              image: NetworkImage(flagUrl),
-              fit: BoxFit.cover,
+        background: Hero(
+          tag: 'flag-$cca2',
+          child: Container(
+            margin: const EdgeInsets.only(top: 100, bottom: 16),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              image: DecorationImage(
+                image: NetworkImage(flagUrl),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ),

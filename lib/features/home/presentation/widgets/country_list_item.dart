@@ -42,18 +42,21 @@ class _CountryListItemState extends State<CountryListItem> {
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         child: Row(
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: Image.network(
-                widget.country.flag,
-                width: 85,
-                height: 48,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) => Container(
+            Hero(
+              tag: 'flag-${widget.country.cca2}',
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.network(
+                  widget.country.flag,
                   width: 85,
                   height: 48,
-                  color: Colors.grey[300],
-                  child: const Icon(Icons.flag),
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) => Container(
+                    width: 85,
+                    height: 48,
+                    color: Colors.grey[300],
+                    child: const Icon(Icons.flag),
+                  ),
                 ),
               ),
             ),

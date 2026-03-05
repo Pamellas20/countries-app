@@ -84,7 +84,11 @@ class _CountryDetailsPageContent extends StatelessWidget {
   Widget _buildMobileLayout(CountryDetails country) {
     return CustomScrollView(
       slivers: [
-        CountryDetailsHeader(countryName: country.name, flagUrl: country.flag),
+        CountryDetailsHeader(
+          countryName: country.name,
+          flagUrl: country.flag,
+          cca2: country.cca2,
+        ),
         SliverToBoxAdapter(
           child: Padding(
             padding: const EdgeInsets.all(16),
@@ -101,6 +105,7 @@ class _CountryDetailsPageContent extends StatelessWidget {
         CountryDetailsHeader(
           countryName: country.name,
           flagUrl: country.flag,
+          cca2: country.cca2,
           expandedHeight: 300,
         ),
         SliverToBoxAdapter(
@@ -124,6 +129,7 @@ class _CountryDetailsPageContent extends StatelessWidget {
         CountryDetailsHeader(
           countryName: country.name,
           flagUrl: country.flag,
+          cca2: country.cca2,
           expandedHeight: 400,
         ),
         SliverToBoxAdapter(

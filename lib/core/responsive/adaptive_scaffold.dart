@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'breakpoints.dart';
 import '../router/app_router.dart';
 import '../theme/app_colors.dart';
+import '../theme/theme_cubit.dart';
 
 class AdaptiveScaffold extends StatelessWidget {
   const AdaptiveScaffold({super.key, required this.child});
@@ -24,6 +26,10 @@ class AdaptiveScaffold extends StatelessWidget {
         break;
       case 1:
         context.go(AppRouter.favorites);
+        break;
+      case 2:
+        // Toggle theme
+        context.read<ThemeCubit>().toggleTheme();
         break;
     }
   }
@@ -66,6 +72,10 @@ class AdaptiveScaffold extends StatelessWidget {
                   ),
                   label: 'Favorites',
                 ),
+                BottomNavigationBarItem(
+                  icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
+                  label: 'Theme',
+                ),
               ],
             ),
           );
@@ -104,16 +114,20 @@ class AdaptiveScaffold extends StatelessWidget {
                 labelType: screenType == ScreenType.desktop
                     ? NavigationRailLabelType.all
                     : NavigationRailLabelType.selected,
-                destinations: const [
-                  NavigationRailDestination(
+                destinations: [
+                  const NavigationRailDestination(
                     icon: Icon(Icons.home_outlined),
                     selectedIcon: Icon(Icons.home),
                     label: Text('Home'),
                   ),
-                  NavigationRailDestination(
+                  const NavigationRailDestination(
                     icon: Icon(Icons.favorite_border),
                     selectedIcon: Icon(Icons.favorite),
                     label: Text('Favorites'),
+                  ),
+                  NavigationRailDestination(
+                    icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
+                    label: const Text('Theme'),
                   ),
                 ],
               ),

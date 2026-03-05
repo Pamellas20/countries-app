@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import '../error/failure.dart';
 
-class NetworkException {
+class NetworkException implements Exception {
   static Failure handleDioException(DioException exception) {
     switch (exception.type) {
       case DioExceptionType.connectionTimeout:
